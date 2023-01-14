@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform") version "1.7.0"
+    kotlin("js") version "1.7.0"
     id("maven-publish")
     "kotlin-dsl"
 }
@@ -20,13 +20,22 @@ kotlin {
             }
         }
     }
-
-    
-    sourceSets {
-        val jsMain by getting
-        val jsTest by getting
-    }
 }
 
 publishing {
+    repositories {
+        maven {
+            name = "github"
+            url = uri("https://maven.pkg.github.com/xcporter/kotlinjs-webaudio-wrapper")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        register<MavenPublication>("kotlinjs-webaudio-wrapper") {
+            from(components["kotlin"])
+        }
+    }
 }

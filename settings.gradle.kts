@@ -1,3 +1,3 @@
 
-rootProject.name = "WebAudioAPI-JSWrapper"
+rootProject.name = "kotlinjs-webaudio-wrapper"
 
